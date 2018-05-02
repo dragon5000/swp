@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>Angular js</title>
+    <script type="text/javascript" src="/scripts/angular.min.js"></script>
+</head>
+
+<body>
+
+    <div ng-app="add_contact" ng-controller="control_add_contacts">
+        <input type="text" ng-model="name"/><br>
+        <input type="text" ng-model="number"/><br>
+        <input type="text" ng-model="job"/><br>
+        <input type="text" ng-model="address"/><br>
+        <button ng-click="add()">send</button>
+        <hr>
+        {{error}}
+    </div>
+    <hr>
+    <div id="list_contacts" ng-app="list_contacts" ng-controller="control_list_contacts">
+        <table border="5">
+            <tr><th ng-click="order('name')">Name</th><th>Number</th><th ng-click="order('job')">Job</th><th ng-click="order('number')">Address</th><th>Operation</th></tr>
+
+            <tr ng-repeat="x in records | orderBy :orderby  ">
+                <td>{{x.name}}</td><td>{{x.number}}</td><td>{{x.job}}</td><td>{{x.address }}|{{x._id}}</td><td><button ng-click="delete(x._id)">Delete</button><button ng-click="edit({{x._id}})">Edit</button></td>
+            </tr>
+        </table>
+        {{error}}
+
+    </div>
+
+    <script type="text/javascript">
+    var app2 = angular.module('add_contact',[]);
+    app2.controller('control_add_contacts',function($scope,$http){
+        $scope.add = function(){
+            $http.post("http://localhost:8081/add_contact",{name:$scope.name,number:$scope.number,job:$scope.job,address:$scope.address}).then(
+            function mySuccess(res){
+                $scope.error= "succ";
+            },function myError(res){
+                $scope.error = res;
+            });
+        };
+    });
+
+
+    var app = angular.module('list_contacts',[]);
+    app.controller('control_list_contacts',function($scope,$http){
+        $http.get("http://localhost:8081/get_contact").then(function mySuccess(res){
+            $scope.records= res.data.records;
+        },function myError(res){
+            $scope.error = res;
+        });
+        $scope.order = function(x){
+            $scope.orderby = x;
+        }
+
+        $scope.delete = function(id){         
+            $http.delete("http://localhost:8081/del_contact/"+id).then(
+            function mySuccess(res){
+                $scope.error= "deleted";
+            },function myError(res){
+                $scope.error = res;
+            });
+        };
+
+    });
+    angular.bootstrap(document.getElementById("list_contacts"), ['list_contacts']);
+    </script>
+</body>
+
+</html>
