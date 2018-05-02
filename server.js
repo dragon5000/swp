@@ -131,6 +131,6 @@ app.get('/auth',function(req,res){
         res.send({auth:false}); console.log("not authorized");
     }
 });
-app.listen(8081);
+app.listen(process.env.PORT || 3000);
 
 
