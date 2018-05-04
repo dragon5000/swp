@@ -58,6 +58,7 @@ app.post('/add_contact',function(req,res){
 });
 app.get('/get_contact',function(req,res){
     contact.find({},function(err,result){
+        if(err) throw err;
         var data = {records:result};
         res.send(data);
     });
