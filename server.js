@@ -58,9 +58,14 @@ app.post('/add_contact',function(req,res){
 });
 app.get('/get_contact',function(req,res){
     contact.find({},function(err,result){
-        if(err) throw err;
+        try {
         var data = {records:result};
         res.send(data);
+} catch (err) {
+    // handle the error safely
+    console.log(err);res.send(err);
+}
+        
     });
 });
 app.delete("/del_contact/:id",function(req,res){
