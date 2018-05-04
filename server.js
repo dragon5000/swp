@@ -57,15 +57,9 @@ app.post('/add_contact',function(req,res){
     }
 });
 app.get('/get_contact',function(req,res){
-    contact.find({},function(err,result){
-        try {
+    contact.find({},function(err,result){      
         var data = {records:result};
-        res.send(data);
-} catch (err) {
-    // handle the error safely
-    console.log(err);res.send(err);
-}
-        
+        res.send(data); 
     });
 });
 app.delete("/del_contact/:id",function(req,res){
