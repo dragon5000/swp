@@ -110,7 +110,7 @@ app.config(function($routeProvider) {
     });     
     app.controller("member_control_signup",function($scope,$http,$sce){
         $scope.signup = function(){
-            $http.post("http://localhost:8081/signup",
+            $http.post("https://swpdragon.herokuapp.com/signup",
                 {"username":$scope.username,"password":$scope.password,"email":$scope.email}).then(
                 function mySuccess(res){
                     if(res.data.error == 0)
