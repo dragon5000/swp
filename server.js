@@ -7,7 +7,7 @@ var mongoose   = require('mongoose');
 var bodyParser = require('body-parser');
 var session    = require('express-session');
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/swp2db');
+mongoose.connect('mongodb://dragon500:dragon00@ds113200.mlab.com:13200/swp2db');
 var schemaContact = mongoose.Schema({
     name:String,
     number:Number,
