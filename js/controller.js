@@ -13,7 +13,7 @@ var app = angular.module("main", []);
     }
 
     function getAllContact(http,scope){
-        http.get("http://localhost:8081/get_contact").then(
+        http.get("https://swpdragon.herokuapp.com/get_contact").then(
         function mySuccess(res){            
             scope.records= res.data.records;
         },function myError(res){
@@ -25,7 +25,7 @@ var app = angular.module("main", []);
 
     }
     function isAuth(http,scope,rootScope){
-        http.get("http://localhost:8081/auth").then(
+        http.get("https://swpdragon.herokuapp.com/auth").then(
             function mySuccess(res){
                 if(res.data.auth == true){
                     rootScope.auth = true;
@@ -50,7 +50,7 @@ var app = angular.module("main", []);
             angular.element(document.getElementsByClassName("view")).append(html);            
         };
         $scope.edit = function(){
-            $http.post("http://localhost:8081/upd_contact",
+            $http.post("https://swpdragon.herokuapp.com/upd_contact",
                 {"id":$scope.id,"name":$scope.name,"number":$scope.number,"job":$scope.job,"address":$scope.address}).then(
                 function mySuccess(res){
                     if(res.data.error == 0){                   
@@ -67,7 +67,7 @@ var app = angular.module("main", []);
         getAllContact($http,$scope);
         isAuth($http,$scope,$rootScope);
         $scope.delete = function(id,index){
-            $http.delete("http://localhost:8081/del_contact/"+id).then(
+            $http.delete("https://swpdragon.herokuapp.com/del_contact/"+id).then(
             function mySuccess(res){
                 if(res.data.error == 0){
                     //$scope.error = $sce.trustAsHtml(notif("Deleted","success"));                    
@@ -82,7 +82,7 @@ var app = angular.module("main", []);
         };
      
         $scope.add = function(){
-            $http.post("http://localhost:8081/add_contact",{name:$scope.name,number:$scope.number,job:$scope.job,address:$scope.address}).then(
+            $http.post("https://swpdragon.herokuapp.com/add_contact",{name:$scope.name,number:$scope.number,job:$scope.job,address:$scope.address}).then(
             function mySuccess(res){
                 if(res.data.error == 0){
                     //$scope.errorFormInsert= $sce.trustAsHtml(notif("Successfull inserted","success"));
@@ -98,7 +98,7 @@ var app = angular.module("main", []);
 
    
         $scope.signout = function(){
-            $http.delete("http://localhost:8081/signout").then(
+            $http.delete("https://swpdragon.herokuapp.com/signout").then(
                 function mySuccess(res){
                     if(res.data.error == 0){
                         $scope.auth = "";
@@ -109,7 +109,7 @@ var app = angular.module("main", []);
         }
  
         $scope.signup = function(){
-            $http.post("http://localhost:8081/signup",
+            $http.post("https://swpdragon.herokuapp.com/signup",
                 {"username":$scope.username,"password":$scope.password,"email":$scope.email}).then(
                 function mySuccess(res){
                     if(res.data.error == 0){
@@ -123,7 +123,7 @@ var app = angular.module("main", []);
         }
  
         $scope.signin = function(){
-            $http.post("http://localhost:8081/signin",
+            $http.post("https://swpdragon.herokuapp.com/signin",
                 {"username":$scope.username,"password":$scope.password}).then(
                 function mySuccess(res){
                     
@@ -141,7 +141,7 @@ var app = angular.module("main", []);
     }); 
     app.controller("member_control_signout",function($scope,$http,$rootScope,$location,$sce){
         $rootScope.signout = function(){
-            $http.delete("http://localhost:8081/signout").then(
+            $http.delete("https://swpdragon.herokuapp.com/signout").then(
                 function mySuccess(res){
                     $scope.error = res.data;
                     $rootScope.auth = null;
