@@ -11,7 +11,7 @@
         <link  rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>   
         <link  rel="stylesheet" href="/bootstrap/css/theme.css"/>   
         <style type="text/css">
-            .load{
+            .loadcss{
                 background: #f9f922;
                 color: #969618;
                 padding: 10px;
@@ -26,7 +26,13 @@
         </style>
     </head>
 <body ng-app="main" ng-controller="control_list_contacts">    
-    <div class="load" ng-show="load">loading ...</div>
+    <div class="loadcss" ng-show="load">loading ...</div>
+     <div class="progress" ng-show="load">
+      <div class="progress-bar progress-bar-striped active" role="progressbar"
+      aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+        40%
+      </div>
+    </div> 
     <nav class="navbar navbar-default">
         <div class="container">            
             <div class="navbar-header">
