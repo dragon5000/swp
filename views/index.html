@@ -10,8 +10,23 @@
         <script type="text/javascript" src="/scripts/jquery.mask.min.js"></script>
         <link  rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>   
         <link  rel="stylesheet" href="/bootstrap/css/theme.css"/>   
+        <style type="text/css">
+            .load{
+                background: #f9f922;
+                color: #969618;
+                padding: 10px;
+                display: inline-block;
+                box-shadow: 0 0 3px;
+                border-radius: 2px;
+                position: fixed;
+                top: 0;
+                left: 40%;
+                right: 40%;
+            }
+        </style>
     </head>
 <body ng-app="main" ng-controller="control_list_contacts">
+    <div class="load" ng-show="load">loading ...</div>
     <nav class="navbar navbar-default">
         <div class="container">            
             <div class="navbar-header">
