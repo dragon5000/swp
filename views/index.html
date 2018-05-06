@@ -26,7 +26,8 @@
         </style>
     </head>
 <body ng-app="main" ng-controller="control_list_contacts">
-    <div class="load" ng-hide="load">loading ...</div>
+    <input ng-model="load"/>
+    <div class="load" ng-show="load">loading ...</div>
     <nav class="navbar navbar-default">
         <div class="container">            
             <div class="navbar-header">
